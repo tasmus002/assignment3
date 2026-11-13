@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#f6f7f2">
+	<title>murmur — a little room to think</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="styles.css">
+	<script src="app.js" defer></script>
+</head>
+<body>
+	<div class="app-shell">
+		<aside class="left-rail" aria-label="Main navigation">
+			<a class="wordmark" href="#home" aria-label="murmur home"><span class="brand-mark">m</span>murmur<span class="wordmark-dot">.</span></a>
+			<nav class="primary-nav">
+				<a class="nav-link is-active" href="#home"><span class="nav-icon">⌂</span>Home</a>
+				<a class="nav-link" href="#discover"><span class="nav-icon">⌕</span>Discover</a>
+				<a class="nav-link" href="profile.html"><span class="nav-icon">◎</span>Profile</a>
+			</nav>
+			<a class="rail-compose" href="#compose">Write a note <span>↗</span></a>
+			<div class="rail-bottom">
+				<div class="rail-note"><span class="note-spark">✳</span><p>A quieter corner of the internet.</p></div>
+				<a class="rail-user" href="profile.html">
+					<img data-own-avatar src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=96&q=80" alt="Avery Lane">
+					<span><strong data-own-name>Avery Lane</strong><small>@averylane</small></span>
+					<span class="user-menu" aria-hidden="true">···</span>
+				</a>
+			</div>
+		</aside>
+
+		<main id="home" class="feed-column">
+			<header class="mobile-header">
+				<a class="wordmark" href="#home"><span class="brand-mark">m</span>murmur<span class="wordmark-dot">.</span></a>
+				<a class="mobile-avatar" href="profile.html" aria-label="Your profile"><img data-own-avatar src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=96&q=80" alt=""></a>
+			</header>
+			<div class="feed-heading">
+				<div><p class="eyebrow">THURSDAY, OCTOBER 16</p><h1>Your little corner</h1></div>
+				<button class="icon-button" type="button" aria-label="Notifications" title="Notifications">♧<span class="notification-dot"></span></button>
+			</div>
+
+			<section id="compose" class="composer" aria-labelledby="compose-title">
+				<div class="composer-top">
+					<img class="avatar" data-own-avatar src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=96&q=80" alt="Avery Lane">
+					<div class="composer-input-wrap">
+						<h2 id="compose-title">What’s on your mind?</h2>
+						<form action="#home" method="get">
+							<label class="visually-hidden" for="post-text">Write a post</label>
+							<textarea id="post-text" name="post" maxlength="800" placeholder="A thought, a moment, a tiny discovery…"></textarea>
+							<div class="composer-tools">
+								<label class="attach-button" for="post-images" title="Add up to four images"><span aria-hidden="true">＋</span> Add photos</label>
+								<input class="visually-hidden" id="post-images" name="images" type="file" accept="image/*" multiple>
+								<span class="character-limit" data-char-count>0 / 800</span>
+								<button class="button button-primary" type="submit">Share note <span aria-hidden="true">↗</span></button>
+							</div>
+							<p class="field-hint">Up to 4 images · 800 characters</p>
+							<p class="post-submit-status" data-post-status role="status" aria-live="polite"></p>
+						</form>
+					</div>
+				</div>
+			</section>
+
+			<div class="feed-toolbar">
+				<div class="feed-tabs" aria-label="Feed filter">
+					<a class="feed-tab selected" href="#following">Following</a>
+					<a class="feed-tab" href="#latest">Latest</a>
+				</div>
+				<button class="filter-button" type="button">☷ <span>Filters</span></button>
+			</div>
+
+			<section class="post-list" aria-label="Recent posts">
+				<div data-public-posts></div>
+				<article class="post" id="following">
+					<div class="post-header">
+						<img class="avatar" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=96&q=80" alt="Theo Park">
+						<div class="post-byline"><a href="user-profile.html" class="display-name">Theo Park</a><span class="handle">@theopark</span><span class="post-dot">·</span><time datetime="2026-10-16T10:42">24m</time></div>
+						<button class="more-button" type="button" aria-label="More post options">···</button>
+					</div>
+					<div class="post-content">
+						<p>Found a little bookshop tucked behind the station. No sign, just a bell on the door and the smell of rain-soaked paper. Lost an hour in there. <span class="post-tag">#smalljoys</span></p>
+						<img class="post-image" src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=1100&q=85" alt="A warmly lit independent bookshop lined with shelves">
+					</div>
+					<div class="post-actions">
+						<input class="like-toggle visually-hidden" id="like-theo" type="checkbox">
+						<label class="action-link like-label" for="like-theo"><span class="heart" aria-hidden="true">♡</span><span>38</span><span class="visually-hidden">likes</span></label>
+						<a class="action-link" href="#comments-theo"><span aria-hidden="true">◷</span><span>6</span><span class="visually-hidden">comments</span></a>
+						<button class="action-link share-action" type="button" aria-label="Share post">↗</button>
+						<button class="action-link bookmark-action" type="button" aria-label="Save post">♧</button>
+					</div>
+					<details class="comments" id="comments-theo">
+						<summary>View 6 replies</summary>
+						<div class="comment-preview"><img class="tiny-avatar" src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=72&q=80" alt=""><p><strong>June Kim</strong> I know the one! Their poetry shelf is lovely.</p></div>
+						<form class="comment-form" action="#comments-theo" method="get"><label class="visually-hidden" for="reply-theo">Write a reply</label><input id="reply-theo" name="reply" placeholder="Write a reply…"><button type="submit" aria-label="Send reply">↗</button></form>
+					</details>
+				</article>
+
+				<article class="post" id="latest">
+					<div class="post-header">
+						<img class="avatar" src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=96&q=80" alt="June Kim">
+						<div class="post-byline"><a href="user-profile.html" class="display-name">June Kim</a><span class="handle">@junebug</span><span class="post-dot">·</span><time datetime="2026-10-16T09:18">2h</time></div>
+						<button class="more-button" type="button" aria-label="More post options">···</button>
+					</div>
+					<div class="post-content">
+						<p>Sunday market haul: the wonkiest tomatoes, basil that smells like summer, and a tiny bunch of dahlias that absolutely did not fit in my tote. Worth it. 🍅</p>
+						<div class="photo-grid" aria-label="Two photos from the market">
+							<img src="https://images.unsplash.com/photo-1546094096-0df4bcaaa337?auto=format&fit=crop&w=700&q=85" alt="Fresh tomatoes at a market">
+							<img src="https://images.unsplash.com/photo-1508610048659-a06b669e3321?auto=format&fit=crop&w=700&q=85" alt="Colorful flowers at a market">
+						</div>
+					</div>
+					<div class="post-actions">
+						<input class="like-toggle visually-hidden" id="like-june" type="checkbox">
+						<label class="action-link like-label" for="like-june"><span class="heart" aria-hidden="true">♡</span><span>112</span><span class="visually-hidden">likes</span></label>
+						<a class="action-link" href="#comments-june"><span aria-hidden="true">◷</span><span>14</span><span class="visually-hidden">comments</span></a>
+						<button class="action-link share-action" type="button" aria-label="Share post">↗</button>
+						<button class="action-link bookmark-action" type="button" aria-label="Save post">♧</button>
+					</div>
+					<details class="comments" id="comments-june">
+						<summary>View 14 replies</summary>
+						<div class="comment-preview"><img class="tiny-avatar" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=72&q=80" alt=""><p><strong>Theo Park</strong> Those tomatoes are perfect.</p></div>
+						<form class="comment-form" action="#comments-june" method="get"><label class="visually-hidden" for="reply-june">Write a reply</label><input id="reply-june" name="reply" placeholder="Write a reply…"><button type="submit" aria-label="Send reply">↗</button></form>
+					</details>
+				</article>
+
+				<article class="post">
+					<div class="post-header">
+						<img class="avatar" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=96&q=80" alt="Sam Rivera">
+						<div class="post-byline"><a href="user-profile.html" class="display-name">Sam Rivera</a><span class="handle">@samrivera</span><span class="post-dot">·</span><time datetime="2026-10-16T07:35">4h</time></div>
+						<button class="more-button" type="button" aria-label="More post options">···</button>
+					</div>
+					<div class="post-content"><p>Reminder to drink a glass of water before your next coffee. A very small act of kindness, from me to you. <span class="post-tag">#gentlerdays</span></p></div>
+					<div class="post-actions">
+						<input class="like-toggle visually-hidden" id="like-sam" type="checkbox">
+						<label class="action-link like-label" for="like-sam"><span class="heart" aria-hidden="true">♡</span><span>24</span><span class="visually-hidden">likes</span></label>
+						<a class="action-link" href="#comments-sam"><span aria-hidden="true">◷</span><span>3</span><span class="visually-hidden">comments</span></a>
+						<button class="action-link share-action" type="button" aria-label="Share post">↗</button>
+						<button class="action-link bookmark-action" type="button" aria-label="Save post">♧</button>
+					</div>
+					<details class="comments" id="comments-sam">
+						<summary>View 3 replies</summary>
+						<form class="comment-form" action="#comments-sam" method="get"><label class="visually-hidden" for="reply-sam">Write a reply</label><input id="reply-sam" name="reply" placeholder="Write a reply…"><button type="submit" aria-label="Send reply">↗</button></form>
+					</details>
+				</article>
+			</section>
+			<footer class="feed-footer">You’re all caught up <span>✳</span></footer>
+		</main>
+
+		<aside class="right-rail" aria-label="Your profile and community">
+			<section class="auth-panel" aria-labelledby="welcome-title">
+				<p class="eyebrow">A PLACE FOR YOUR THOUGHTS</p>
+				<h2 id="welcome-title">Make yourself<br>at home.</h2>
+				<p class="auth-copy">Join the conversation, one little note at a time.</p>
+				<details class="auth-details">
+					<summary class="button button-dark">Create an account <span aria-hidden="true">↗</span></summary>
+					<form class="auth-form" action="#" method="get">
+						<label for="signup-name">Display name</label><input id="signup-name" name="displayName" autocomplete="name" required placeholder="Your name">
+						<label for="signup-username">Username</label><input id="signup-username" name="username" autocomplete="username" required placeholder="Choose a username">
+						<label for="signup-email">Email</label><input id="signup-email" name="email" type="email" autocomplete="email" required placeholder="you@example.com">
+						<label for="signup-password">Password</label><input id="signup-password" name="password" type="password" autocomplete="new-password" required minlength="8" placeholder="At least 8 characters">
+						<button class="button button-primary" type="submit">Sign up <span aria-hidden="true">↗</span></button>
+					</form>
+				</details>
+				<details class="auth-details login-details">
+					<summary class="login-link">Already have an account? <strong>Log in</strong></summary>
+					<form class="auth-form" action="#" method="get">
+						<label for="login-email">Email or username</label><input id="login-email" name="login" autocomplete="username" required placeholder="Email or username">
+						<label for="login-password">Password</label><input id="login-password" name="password" type="password" autocomplete="current-password" required placeholder="Your password">
+						<button class="button button-primary" type="submit">Log in <span aria-hidden="true">↗</span></button>
+					</form>
+				</details>
+			</section>
+
+			<section class="profile-card" id="profile" aria-labelledby="profile-name">
+				<div class="profile-banner"></div>
+				<div class="profile-body">
+					<img class="profile-avatar" data-own-avatar src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=160&q=85" alt="Avery Lane">
+					<button class="edit-profile" type="button">Edit profile</button>
+					<h2 id="profile-name" data-own-name>Avery Lane</h2><p class="profile-handle">@averylane</p>
+					<p class="profile-bio" data-own-bio>Collecting little moments, good sentences &amp; places with really good pastries.</p>
+					<div class="profile-counts"><span><strong data-post-count>128</strong> notes</span><span><strong>1.2k</strong> followers</span><span><strong data-following-count>482</strong> following</span></div>
+				</div>
+			</section>
+
+			<section class="discover-panel" id="discover" aria-labelledby="discover-title">
+				<div class="section-heading"><h2 id="discover-title">A few good follows</h2><a href="#discover">See all</a></div>
+				<div class="suggestion"><img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=88&q=80" alt="Nia Brooks"><span><strong>Nia Brooks</strong><small>@niabrooks</small></span><button type="button" aria-label="Follow Nia Brooks">+</button></div>
+				<div class="suggestion"><img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=88&q=80" alt="Eli Morgan"><span><strong>Eli Morgan</strong><small>@elimorgan</small></span><button type="button" aria-label="Follow Eli Morgan">+</button></div>
+				<div class="suggestion"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=88&q=80" alt="Rory Chen"><span><strong>Rory Chen</strong><small>@rorydraws</small></span><button type="button" aria-label="Follow Rory Chen">+</button></div>
+			</section>
+
+			<section class="bio-editor" aria-labelledby="bio-title">
+				<h2 id="bio-title">Your profile, your words</h2>
+				<form action="#profile" method="get">
+					<label for="bio-text">Bio <span>200 characters max</span></label>
+					<textarea id="bio-text" name="bio" maxlength="200" placeholder="A little about you…"></textarea>
+					<label class="attach-button" for="profile-picture">＋ Profile picture</label><input class="visually-hidden" id="profile-picture" name="profilePicture" type="file" accept="image/*">
+					<label class="attach-button" for="profile-banner">＋ Banner image</label><input class="visually-hidden" id="profile-banner" name="bannerImage" type="file" accept="image/*">
+					<button class="button button-outline" type="submit">Save profile</button>
+				</form>
+			</section>
+			<footer class="right-footer"><a href="#about">About</a><a href="#guidelines">Guidelines</a><a href="#privacy">Privacy</a><span>© 2026 murmur</span></footer>
+		</aside>
+	</div>
+</body>
+</html>

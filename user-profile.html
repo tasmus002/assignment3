@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#f6f7f2">
+	<title>Theo Park — murmur</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="styles.css">
+	<script src="app.js" defer></script>
+</head>
+<body>
+	<div class="app-shell">
+		<aside class="left-rail" aria-label="Main navigation">
+			<a class="wordmark" href="index.html" aria-label="murmur home"><span class="brand-mark">m</span>murmur<span class="wordmark-dot">.</span></a>
+			<nav class="primary-nav">
+				<a class="nav-link" href="index.html"><span class="nav-icon">⌂</span>Home</a>
+				<a class="nav-link" href="index.html#discover"><span class="nav-icon">⌕</span>Discover</a>
+				<a class="nav-link" href="profile.html"><span class="nav-icon">◎</span>My profile</a>
+			</nav>
+			<a class="rail-compose" href="index.html#compose">Write a note <span>↗</span></a>
+			<div class="rail-bottom">
+				<div class="rail-note"><span class="note-spark">✳</span><p>A quieter corner of the internet.</p></div>
+				<a class="rail-user" href="profile.html"><img data-own-avatar src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=96&q=80" alt="Avery Lane"><span><strong data-own-name>Avery Lane</strong><small>@averylane</small></span><span class="user-menu" aria-hidden="true">···</span></a>
+			</div>
+		</aside>
+
+		<main class="feed-column profile-page">
+			<header class="mobile-header">
+				<a class="wordmark" href="index.html"><span class="brand-mark">m</span>murmur<span class="wordmark-dot">.</span></a>
+				<a class="mobile-avatar" href="profile.html" aria-label="Your profile"><img data-own-avatar src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=96&q=80" alt=""></a>
+			</header>
+			<div class="profile-page-heading"><a href="index.html" class="back-link">← <span>Home</span></a><span>PROFILE</span></div>
+			<section class="profile-hero" aria-labelledby="other-profile-name">
+				<div class="profile-cover"><img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=85" alt="Golden evening light across a quiet landscape"></div>
+				<div class="profile-identity">
+					<div class="own-avatar-wrap"><img class="profile-large-avatar" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=240&q=85" alt="Theo Park"></div>
+					<div class="profile-stats"><span><strong>86</strong> notes</span><span><strong data-follower-count="theo">2,400</strong> followers</span><span><strong>316</strong> following</span></div>
+				</div>
+				<div class="profile-info public-profile-info">
+					<div class="profile-name-row"><div><h1 id="other-profile-name">Theo Park</h1><p class="profile-handle">@theopark</p></div><button class="button button-outline follow-button" type="button" data-follow-user="theo" aria-pressed="false">＋ Follow</button></div>
+					<p class="profile-bio">Photographs, paperbacks, and the occasional very long walk. Usually looking for the next good cup of tea.</p>
+				</div>
+			</section>
+			<nav class="profile-section-nav public-section-nav" aria-label="Theo's profile sections"><a class="active" href="#theo-posts">Posts <span>86</span></a><a href="#theo-replies">Replies</a></nav>
+			<section class="profile-feed-section" id="theo-posts" aria-labelledby="theo-posts-title">
+				<div class="profile-section-title"><h2 id="theo-posts-title">Theo’s posts</h2><span>Notes shared with everyone</span></div>
+				<article class="post profile-post">
+					<div class="post-header"><img class="avatar" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=96&q=80" alt="Theo Park"><div class="post-byline"><a href="user-profile.html" class="display-name">Theo Park</a><span class="handle">@theopark</span><span class="post-dot">·</span><time datetime="2026-10-16T10:42">24m</time></div><button class="more-button" type="button" aria-label="More post options">···</button></div>
+					<div class="post-content"><p>Found a little bookshop tucked behind the station. No sign, just a bell on the door and the smell of rain-soaked paper. Lost an hour in there. <span class="post-tag">#smalljoys</span></p><img class="post-image" src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=1100&q=85" alt="A warmly lit independent bookshop lined with shelves"></div>
+					<div class="post-actions"><input class="like-toggle visually-hidden" id="theo-like-books" type="checkbox"><label class="action-link like-label" for="theo-like-books"><span class="heart" aria-hidden="true">♡</span><span>38</span><span class="visually-hidden">likes</span></label><a class="action-link" href="#theo-replies"><span aria-hidden="true">◷</span><span>6</span><span class="visually-hidden">comments</span></a><button class="action-link share-action" type="button" aria-label="Share post">↗</button></div>
+				</article>
+				<article class="post profile-post">
+					<div class="post-header"><img class="avatar" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=96&q=80" alt="Theo Park"><div class="post-byline"><a href="user-profile.html" class="display-name">Theo Park</a><span class="handle">@theopark</span><span class="post-dot">·</span><time datetime="2026-10-12T14:00">4d</time></div><button class="more-button" type="button" aria-label="More post options">···</button></div>
+					<div class="post-content"><p>Finally developed the roll from that foggy morning by the coast. A few came out blurry, but I think I like those best.</p><div class="photo-grid" aria-label="Two coastal photographs"><img src="https://images.unsplash.com/photo-1473116763249-2faaef81ccda?auto=format&fit=crop&w=700&q=85" alt="Misty coast along a rocky shore"><img src="https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=700&q=85" alt="Ocean waves under pale skies"></div></div>
+					<div class="post-actions"><input class="like-toggle visually-hidden" id="theo-like-coast" type="checkbox"><label class="action-link like-label" for="theo-like-coast"><span class="heart" aria-hidden="true">♡</span><span>73</span><span class="visually-hidden">likes</span></label><a class="action-link" href="#theo-replies"><span aria-hidden="true">◷</span><span>11</span><span class="visually-hidden">comments</span></a><button class="action-link share-action" type="button" aria-label="Share post">↗</button></div>
+				</article>
+			</section>
+			<section class="profile-feed-section" id="theo-replies" aria-labelledby="theo-replies-title">
+				<div class="profile-section-title"><h2 id="theo-replies-title">Theo’s replies</h2><span>Conversations Theo joined</span></div>
+				<article class="post profile-post reply-post">
+					<div class="reply-context">Theo replied to <a href="profile.html">Avery Lane</a></div>
+					<div class="post-header"><img class="avatar" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=96&q=80" alt="Theo Park"><div class="post-byline"><a href="user-profile.html" class="display-name">Theo Park</a><span class="handle">@theopark</span><span class="post-dot">·</span><time datetime="2026-10-15T09:35">1d</time></div></div>
+					<div class="post-content"><p>That’s the best way to spend a sunny morning. There’s a tiny table around the corner that gets the light just right.</p></div>
+					<div class="post-actions"><input class="like-toggle visually-hidden" id="theo-like-reply" type="checkbox"><label class="action-link like-label" for="theo-like-reply"><span class="heart" aria-hidden="true">♡</span><span>5</span><span class="visually-hidden">likes</span></label></div>
+				</article>
+				<article class="post profile-post reply-post">
+					<div class="reply-context">Theo replied to <a href="user-profile.html">June Kim</a></div>
+					<div class="post-header"><img class="avatar" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=96&q=80" alt="Theo Park"><div class="post-byline"><a href="user-profile.html" class="display-name">Theo Park</a><span class="handle">@theopark</span><span class="post-dot">·</span><time datetime="2026-10-13T18:15">3d</time></div></div>
+					<div class="post-content"><p>Those tomatoes are perfect. I’m going to have to find that market next weekend.</p></div>
+					<div class="post-actions"><input class="like-toggle visually-hidden" id="theo-like-reply-two" type="checkbox"><label class="action-link like-label" for="theo-like-reply-two"><span class="heart" aria-hidden="true">♡</span><span>2</span><span class="visually-hidden">likes</span></label></div>
+				</article>
+			</section>
+			<footer class="feed-footer">That’s all for now <span>✳</span></footer>
+		</main>
+
+		<aside class="right-rail profile-side" aria-label="About Theo Park">
+			<section class="profile-side-note"><span class="note-spark">✳</span><h2>A little more about Theo.</h2><p>Photographs, paperbacks, and the occasional very long walk.</p><a class="button button-outline" href="index.html#compose">Send a note <span aria-hidden="true">↗</span></a></section>
+			<section class="profile-side-links"><h2>On this profile</h2><a href="#theo-posts">Posts <span>↗</span></a><a href="#theo-replies">Replies <span>↗</span></a></section>
+			<footer class="right-footer"><a href="#about">About</a><a href="#guidelines">Guidelines</a><a href="#privacy">Privacy</a><span>© 2026 murmur</span></footer>
+		</aside>
+	</div>
+</body>
+</html>

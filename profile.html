@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#f6f7f2">
+	<title>Avery Lane — murmur</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="styles.css">
+	<script src="app.js" defer></script>
+</head>
+<body>
+	<div class="app-shell">
+		<aside class="left-rail" aria-label="Main navigation">
+			<a class="wordmark" href="index.html" aria-label="murmur home"><span class="brand-mark">m</span>murmur<span class="wordmark-dot">.</span></a>
+			<nav class="primary-nav">
+				<a class="nav-link" href="index.html"><span class="nav-icon">⌂</span>Home</a>
+				<a class="nav-link" href="index.html#discover"><span class="nav-icon">⌕</span>Discover</a>
+				<a class="nav-link is-active" href="profile.html" aria-current="page"><span class="nav-icon">◎</span>Profile</a>
+			</nav>
+			<a class="rail-compose" href="index.html#compose">Write a note <span>↗</span></a>
+			<div class="rail-bottom">
+				<div class="rail-note"><span class="note-spark">✳</span><p>A quieter corner of the internet.</p></div>
+				<a class="rail-user" href="profile.html">
+					<img data-own-avatar src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=96&q=80" alt="Avery Lane">
+					<span><strong data-own-name>Avery Lane</strong><small>@averylane</small></span>
+					<span class="user-menu" aria-hidden="true">···</span>
+				</a>
+			</div>
+		</aside>
+
+		<main class="feed-column profile-page">
+			<header class="mobile-header">
+				<a class="wordmark" href="index.html"><span class="brand-mark">m</span>murmur<span class="wordmark-dot">.</span></a>
+				<a class="mobile-avatar" href="profile.html" aria-label="Your profile"><img data-own-avatar src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=96&q=80" alt=""></a>
+			</header>
+			<div class="profile-page-heading"><a href="index.html" class="back-link">← <span>Home</span></a><span>YOUR PROFILE</span></div>
+
+			<section class="profile-hero" aria-labelledby="own-profile-name">
+				<div class="profile-cover">
+					<img data-own-banner src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1600&q=85" alt="Mountain lake and soft morning light">
+					<label class="cover-edit" for="own-banner">▧ <span>Change banner</span></label>
+					<input class="visually-hidden" id="own-banner" type="file" accept="image/*">
+				</div>
+				<div class="profile-identity">
+					<div class="own-avatar-wrap">
+						<img class="profile-large-avatar" data-own-avatar src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=240&q=85" alt="Avery Lane">
+						<label class="avatar-edit" for="own-avatar" aria-label="Change profile picture" title="Change profile picture">＋</label>
+						<input class="visually-hidden" id="own-avatar" type="file" accept="image/*">
+					</div>
+					<div class="profile-stats"><span><strong data-post-count>128</strong> notes</span><span><strong>1.2k</strong> followers</span><span><strong data-following-count>482</strong> following</span></div>
+				</div>
+				<div class="profile-info">
+					<div class="profile-name-row"><div><h1 id="own-profile-name" data-own-name>Avery Lane</h1><p class="profile-handle">@averylane</p></div><a class="button button-outline profile-message" href="index.html#compose">Write a note</a></div>
+					<p class="profile-bio" data-own-bio>Collecting little moments, good sentences &amp; places with really good pastries.</p>
+					<form class="profile-edit-form" action="#profile-edit" method="get" id="profile-edit">
+						<div class="edit-field"><label for="display-name">Display name</label><input id="display-name" name="displayName" value="Avery Lane" maxlength="40"></div>
+						<div class="edit-field bio-field"><label for="own-bio">Bio <span>200 characters max</span></label><textarea id="own-bio" name="bio" maxlength="200">Collecting little moments, good sentences &amp; places with really good pastries.</textarea></div>
+						<button class="button button-primary" type="submit">Save profile <span aria-hidden="true">↗</span></button>
+						<span class="profile-save-status" data-profile-status role="status" aria-live="polite"></span>
+					</form>
+				</div>
+			</section>
+
+			<nav class="profile-section-nav" aria-label="Profile sections">
+				<a class="active" href="#my-posts">Posts <span data-post-count>128</span></a>
+				<a href="#my-replies">Replies</a>
+				<a href="#my-likes">Liked</a>
+			</nav>
+
+			<section class="profile-feed-section" id="my-posts" aria-labelledby="my-posts-title">
+				<div class="profile-section-title"><h2 id="my-posts-title">Your posts</h2><span>Things you’ve shared</span></div>
+				<div data-own-posts></div>
+				<article class="post profile-post">
+					<div class="post-header"><img class="avatar" data-own-avatar src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=96&q=80" alt="Avery Lane"><div class="post-byline"><a href="profile.html" class="display-name">Avery Lane</a><span class="handle">@averylane</span><span class="post-dot">·</span><time datetime="2026-10-16T08:42">2h</time></div><button class="more-button" type="button" aria-label="More post options">···</button></div>
+					<div class="post-content"><p>First coffee outside this season. The sun came out right as I sat down, so naturally I’m calling this excellent planning. <span class="post-tag">#littlethings</span></p><img class="post-image" src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1100&q=85" alt="A cup of coffee on a sunny outdoor table"></div>
+					<div class="post-actions"><input class="like-toggle visually-hidden" id="own-like-coffee" type="checkbox" checked><label class="action-link like-label" for="own-like-coffee"><span class="heart" aria-hidden="true">♡</span><span>42</span><span class="visually-hidden">likes</span></label><a class="action-link" href="#post-reply-coffee"><span aria-hidden="true">◷</span><span>8</span><span class="visually-hidden">comments</span></a><button class="action-link share-action" type="button" aria-label="Share post">↗</button></div>
+				</article>
+				<article class="post profile-post">
+					<div class="post-header"><img class="avatar" data-own-avatar src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=96&q=80" alt="Avery Lane"><div class="post-byline"><a href="profile.html" class="display-name">Avery Lane</a><span class="handle">@averylane</span><span class="post-dot">·</span><time datetime="2026-10-14T16:10">2d</time></div><button class="more-button" type="button" aria-label="More post options">···</button></div>
+					<div class="post-content"><p>Little neighborhood walk, big main-character energy. Found three new streets I’d never turned down before.</p></div>
+					<div class="post-actions"><input class="like-toggle visually-hidden" id="own-like-walk" type="checkbox"><label class="action-link like-label" for="own-like-walk"><span class="heart" aria-hidden="true">♡</span><span>19</span><span class="visually-hidden">likes</span></label><a class="action-link" href="#post-reply-walk"><span aria-hidden="true">◷</span><span>4</span><span class="visually-hidden">comments</span></a><button class="action-link share-action" type="button" aria-label="Share post">↗</button></div>
+				</article>
+			</section>
+
+			<section class="profile-feed-section" id="my-replies" aria-labelledby="my-replies-title">
+				<div class="profile-section-title"><h2 id="my-replies-title">Your replies</h2><span>Conversations you joined</span></div>
+				<article class="post profile-post reply-post" id="post-reply-coffee">
+					<div class="reply-context">You replied to <a href="user-profile.html">Theo Park</a></div>
+					<div class="post-header"><img class="avatar" data-own-avatar src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=96&q=80" alt="Avery Lane"><div class="post-byline"><a href="profile.html" class="display-name">Avery Lane</a><span class="handle">@averylane</span><span class="post-dot">·</span><time datetime="2026-10-15T12:09">1d</time></div></div>
+					<div class="post-content"><p>That little bookshop is such a gem. I found the best rainy-day read there last month.</p></div>
+					<div class="post-actions"><input class="like-toggle visually-hidden" id="own-like-reply" type="checkbox"><label class="action-link like-label" for="own-like-reply"><span class="heart" aria-hidden="true">♡</span><span>3</span><span class="visually-hidden">likes</span></label><button class="action-link share-action" type="button" aria-label="Share reply">↗</button></div>
+				</article>
+				<article class="post profile-post reply-post" id="post-reply-walk">
+					<div class="reply-context">You replied to <a href="user-profile.html">June Kim</a></div>
+					<div class="post-header"><img class="avatar" data-own-avatar src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=96&q=80" alt="Avery Lane"><div class="post-byline"><a href="profile.html" class="display-name">Avery Lane</a><span class="handle">@averylane</span><span class="post-dot">·</span><time datetime="2026-10-13T17:50">3d</time></div></div>
+					<div class="post-content"><p>Adding this to my weekend list immediately. The flowers look so lovely.</p></div>
+					<div class="post-actions"><input class="like-toggle visually-hidden" id="own-like-reply-two" type="checkbox"><label class="action-link like-label" for="own-like-reply-two"><span class="heart" aria-hidden="true">♡</span><span>2</span><span class="visually-hidden">likes</span></label><button class="action-link share-action" type="button" aria-label="Share reply">↗</button></div>
+				</article>
+			</section>
+
+			<section class="profile-feed-section" id="my-likes" aria-labelledby="my-likes-title">
+				<div class="profile-section-title"><h2 id="my-likes-title">Posts you’ve liked</h2><span>Only you can see this</span></div>
+				<article class="post profile-post">
+					<div class="post-header"><img class="avatar" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=96&q=80" alt="Theo Park"><div class="post-byline"><a href="user-profile.html" class="display-name">Theo Park</a><span class="handle">@theopark</span><span class="post-dot">·</span><time datetime="2026-10-15T09:35">1d</time></div><span class="liked-indicator">♥ You liked this</span></div>
+					<div class="post-content"><p>Found a little bookshop tucked behind the station. No sign, just a bell on the door and the smell of rain-soaked paper. Lost an hour in there. <span class="post-tag">#smalljoys</span></p><img class="post-image" src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=1100&q=85" alt="A warmly lit independent bookshop lined with shelves"></div>
+					<div class="post-actions"><input class="like-toggle visually-hidden" id="own-liked-theo" type="checkbox" checked><label class="action-link like-label" for="own-liked-theo"><span class="heart" aria-hidden="true">♡</span><span>38</span><span class="visually-hidden">likes</span></label><a class="action-link" href="index.html#comments-theo"><span aria-hidden="true">◷</span><span>6</span><span class="visually-hidden">comments</span></a></div>
+				</article>
+			</section>
+			<footer class="feed-footer">You’re all caught up <span>✳</span></footer>
+		</main>
+
+		<aside class="right-rail profile-side" aria-label="Profile details">
+			<section class="profile-side-note"><span class="note-spark">✳</span><h2>Your story, as it unfolds.</h2><p>Your posts and replies are collected here. Your liked posts are just for you.</p></section>
+			<section class="profile-side-links"><h2>Quick links</h2><a href="#my-posts">Your posts <span>↗</span></a><a href="#my-replies">Your replies <span>↗</span></a><a href="#my-likes">Liked posts <span>↗</span></a></section>
+			<footer class="right-footer"><a href="#about">About</a><a href="#guidelines">Guidelines</a><a href="#privacy">Privacy</a><span>© 2026 murmur</span></footer>
+		</aside>
+	</div>
+</body>
+</html>
