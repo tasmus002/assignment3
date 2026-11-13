@@ -92,6 +92,8 @@ h1, .auth-panel h2 { font-family: var(--display); font-weight: 600; letter-spaci
 .action-link { display: inline-flex; align-items: center; gap: 6px; padding: 0; border: 0; background: none; color: #8b958d; font-size: 12px; cursor: pointer; }
 .action-link > span:first-child { font-size: 17px; }
 .like-label { cursor: pointer; }
+.like-label .heart { font-size: 0; }
+.like-label .heart::before { content: "♡"; font-size: 17px; }
 .like-toggle:checked + .like-label { color: #d65e64; }
 .like-toggle:checked + .like-label .heart { color: #d65e64; }
 .like-toggle:checked + .like-label .heart::before { content: "♥"; }
@@ -223,6 +225,44 @@ h1, .auth-panel h2 { font-family: var(--display); font-weight: 600; letter-spaci
 .public-profile-info { padding-bottom: 21px; }
 .public-section-nav { top: 0; }
 
+.discover-page { min-width: 0; }
+.discover-heading { padding: 31px 27px 22px; background: white; }
+.discover-heading h1 { margin: 0; font-size: 25px; }
+.discover-intro { margin: 8px 0 17px; color: #748075; font-size: 12px; line-height: 1.5; }
+.discover-search { display: flex; height: 45px; align-items: center; gap: 10px; padding: 0 12px; border: 1px solid #dfe5dc; border-radius: 5px; background: #fbfcf9; }
+.search-icon { color: var(--green); font-size: 22px; line-height: 1; }
+.discover-search input { flex: 1; width: 0; height: 100%; border: 0; outline: 0; background: transparent; color: var(--ink); font-size: 12px; }
+.discover-search input::placeholder { color: #a0a9a0; }
+.search-clear { display: grid; width: 25px; height: 25px; place-items: center; border: 0; border-radius: 50%; background: #edf2eb; color: #67736a; font-size: 19px; line-height: 1; cursor: pointer; }
+.trending-strip { padding: 20px 27px 19px; border-bottom: 1px solid var(--line); background: #f0f3ed; }
+.trending-heading { display: flex; align-items: center; justify-content: space-between; }
+.trending-heading .eyebrow { margin-bottom: 5px; }
+.trending-heading h2 { margin: 0; font-family: var(--display); font-size: 15px; font-weight: 600; }
+.trending-spark { color: var(--coral); font-size: 23px; }
+.trending-topics { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.trending-topics button { display: inline-flex; min-height: 31px; align-items: center; gap: 8px; padding: 0 10px; border: 1px solid #dce5dc; border-radius: 4px; background: white; color: var(--green-dark); font-size: 10px; font-weight: 600; cursor: pointer; }
+.trending-topics button:hover { border-color: #9ab6a0; background: #f8fbf7; }
+.trending-topics button span { color: #98a198; font-size: 9px; font-weight: 400; }
+.discover-results-section { min-height: 300px; }
+.discover-results-heading { display: flex; align-items: baseline; justify-content: space-between; padding: 20px 27px 11px; }
+.discover-results-heading h2 { margin: 0; font-family: var(--display); font-size: 15px; font-weight: 600; }
+.discover-results-heading > span { color: #929a93; font-size: 10px; }
+.discover-results .post { border-top: 1px solid var(--line); }
+.search-highlight { padding: 0 1px; border-radius: 2px; background: #f5d894; color: #49391e; }
+.discover-empty { padding: 54px 25px 64px; text-align: center; }
+.discover-empty[hidden] { display: none; }
+.discover-empty > span { color: var(--green); font-size: 28px; }
+.discover-empty h3 { margin: 9px 0 5px; font-family: var(--display); font-size: 16px; }
+.discover-empty p { max-width: 260px; margin: 0 auto; color: #89938b; font-size: 11px; line-height: 1.6; }
+.discover-side { padding-top: 88px; }
+.discover-side-card { padding: 19px; border: 1px solid var(--line); border-radius: 5px; background: #edf2eb; }
+.discover-side-card h2 { margin: 7px 0; font-family: var(--display); font-size: 17px; line-height: 1.25; }
+.discover-side-card > p:not(.eyebrow) { margin: 0 0 15px; color: #718075; font-size: 11px; line-height: 1.6; }
+.discover-side-card .button { width: 100%; justify-content: space-between; }
+.discover-tip { background: white; }
+.discover-tip h2 { font-size: 14px; }
+.discover-tip > p:not(.eyebrow) { margin-bottom: 0; }
+
 @media (max-width: 1160px) {
   .app-shell { grid-template-columns: 190px minmax(0, 620px); column-gap: 28px; justify-content: center; }
   .right-rail { display: none; }
@@ -273,6 +313,15 @@ h1, .auth-panel h2 { font-family: var(--display); font-weight: 600; letter-spaci
   .reply-context { margin-left: 0; }
   .profile-side { padding: 18px; }
   .liked-indicator { font-size: 9px; }
+  .discover-heading { padding: 23px 18px 17px; }
+  .discover-heading h1 { font-size: 22px; }
+  .trending-strip { padding: 17px 18px; }
+  .trending-topics { gap: 7px; }
+  .trending-topics button { min-height: 30px; }
+  .discover-results-heading { padding: 18px 18px 10px; }
+  .discover-results .post { padding: 17px 18px 15px; }
+  .discover-results .post-content { padding-left: 0; }
+  .discover-side { padding: 18px; }
 }
 
 @media (max-width: 390px) {

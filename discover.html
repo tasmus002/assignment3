@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#f6f7f2">
+	<title>Discover — murmur</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="styles.css">
+	<script src="app.js" defer></script>
+</head>
+<body>
+	<div class="app-shell">
+		<aside class="left-rail" aria-label="Main navigation">
+			<a class="wordmark" href="index.html" aria-label="murmur home"><span class="brand-mark">m</span>murmur<span class="wordmark-dot">.</span></a>
+			<nav class="primary-nav">
+				<a class="nav-link" href="index.html"><span class="nav-icon">⌂</span>Home</a>
+				<a class="nav-link is-active" href="discover.html" aria-current="page"><span class="nav-icon">⌕</span>Discover</a>
+				<a class="nav-link" href="profile.html"><span class="nav-icon">◎</span>Profile</a>
+			</nav>
+			<a class="rail-compose" href="index.html#compose">Write a note <span>↗</span></a>
+			<div class="rail-bottom">
+				<div class="rail-note"><span class="note-spark">✳</span><p>A quieter corner of the internet.</p></div>
+				<a class="rail-user" href="profile.html"><img data-own-avatar src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=96&q=80" alt="Avery Lane"><span><strong data-own-name>Avery Lane</strong><small>@averylane</small></span><span class="user-menu" aria-hidden="true">···</span></a>
+			</div>
+		</aside>
+
+		<main class="feed-column discover-page">
+			<header class="mobile-header">
+				<a class="wordmark" href="index.html"><span class="brand-mark">m</span>murmur<span class="wordmark-dot">.</span></a>
+				<a class="mobile-avatar" href="profile.html" aria-label="Your profile"><img data-own-avatar src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=96&q=80" alt=""></a>
+			</header>
+			<div class="discover-heading">
+				<p class="eyebrow">A LITTLE CURIOSITY GOES A LONG WAY</p>
+				<h1>Find something good.</h1>
+				<p class="discover-intro">Search post text, names, and small moments from around murmur.</p>
+				<form class="discover-search" role="search">
+					<label class="visually-hidden" for="discover-search-input">Search posts</label>
+					<span class="search-icon" aria-hidden="true">⌕</span>
+					<input id="discover-search-input" type="search" placeholder="Try “book”, “coffee”, or “market”…" autocomplete="off" data-discover-search>
+					<button type="button" class="search-clear" aria-label="Clear search" data-discover-clear>×</button>
+				</form>
+			</div>
+
+			<section class="trending-strip" aria-labelledby="trending-title">
+				<div class="trending-heading"><div><p class="eyebrow">GOOD THINGS, RIGHT NOW</p><h2 id="trending-title">Trending topics</h2></div><span class="trending-spark" aria-hidden="true">✳</span></div>
+				<div class="trending-topics">
+					<button type="button" data-trending-query="book"># bookshops <span>128 notes</span></button>
+					<button type="button" data-trending-query="market"># sunday market <span>86 notes</span></button>
+					<button type="button" data-trending-query="coffee"># slow mornings <span>64 notes</span></button>
+					<button type="button" data-trending-query="small joys"># small joys <span>42 notes</span></button>
+				</div>
+			</section>
+
+			<section class="discover-results-section" aria-labelledby="discover-results-title">
+				<div class="discover-results-heading"><h2 id="discover-results-title" data-discover-heading>Trending posts</h2><span data-discover-count></span></div>
+				<div class="post-list discover-results" data-discover-results aria-live="polite"></div>
+				<div class="discover-empty" data-discover-empty hidden><span aria-hidden="true">⌕</span><h3>No notes found</h3><p>Try a shorter keyword or one of the trending topics above.</p></div>
+			</section>
+			<footer class="feed-footer">A whole world in a few words <span>✳</span></footer>
+		</main>
+
+		<aside class="right-rail discover-side" aria-label="Discover more">
+			<section class="discover-side-card">
+				<p class="eyebrow">A GOOD PLACE TO START</p>
+				<h2>Follow your curiosity.</h2>
+				<p>From the books people can’t put down to the little spots worth finding, there’s always something new in the feed.</p>
+				<a class="button button-outline" href="index.html">Back to your feed <span aria-hidden="true">↗</span></a>
+			</section>
+			<section class="discover-side-card discover-tip">
+				<span class="note-spark">✳</span><h2>Search tip</h2><p>Try a few letters. A search for “book” also finds “books” and “bookshelf.” Matching text is highlighted in each note.</p>
+			</section>
+			<footer class="right-footer"><a href="#about">About</a><a href="#guidelines">Guidelines</a><a href="#privacy">Privacy</a><span>© 2026 murmur</span></footer>
+		</aside>
+	</div>
+</body>
+</html>

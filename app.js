@@ -1,5 +1,48 @@
 (() => {
 	const storageKey = "murmur.profile.v1";
+	const communityPosts = [
+		{
+			id: "theo-bookshop",
+			engagementKey: "theo-bookshop",
+			author: "Theo Park",
+			handle: "@theopark",
+			avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=96&q=80",
+			profileHref: "user-profile.html",
+			text: "Found a little bookshop tucked behind the station. No sign, just a bell on the door and the smell of rain-soaked paper. Lost an hour among the bookshelves. #smalljoys",
+			images: ["https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=1100&q=85"],
+			createdAt: "2026-10-16T10:42:00.000Z",
+			likes: 38,
+			liked: false,
+			comments: [{ author: "June Kim", text: "I know the one! Their poetry shelf is lovely." }]
+		},
+		{
+			id: "june-market",
+			author: "June Kim",
+			handle: "@junebug",
+			avatar: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=96&q=80",
+			text: "Sunday market haul: the wonkiest tomatoes, basil that smells like summer, and a tiny bunch of dahlias that absolutely did not fit in my tote. Worth it. #smalljoys",
+			images: [
+				"https://images.unsplash.com/photo-1546094096-0df4bcaaa337?auto=format&fit=crop&w=700&q=85",
+				"https://images.unsplash.com/photo-1508610048659-a06b669e3321?auto=format&fit=crop&w=700&q=85"
+			],
+			createdAt: "2026-10-16T09:18:00.000Z",
+			likes: 112,
+			liked: false,
+			comments: [{ author: "Theo Park", text: "Those tomatoes are perfect." }]
+		},
+		{
+			id: "sam-gentle-morning",
+			author: "Sam Rivera",
+			handle: "@samrivera",
+			avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=96&q=80",
+			text: "Reminder to drink a glass of water before your next coffee. A very small act of kindness, from me to you. #gentlerdays",
+			images: [],
+			createdAt: "2026-10-16T07:35:00.000Z",
+			likes: 24,
+			liked: false,
+			comments: []
+		}
+	];
 	const defaultProfile = {
 		displayName: "Avery Lane",
 		bio: "Collecting little moments, good sentences & places with really good pastries.",
@@ -8,6 +51,8 @@
 		followingCount: 482,
 		followedUsers: [],
 		followerCounts: { theo: 2400 },
+		likes: {},
+		communityPosts: [],
 		posts: []
 	};
 
@@ -19,6 +64,10 @@
 				...saved,
 				followedUsers: Array.isArray(saved.followedUsers) ? saved.followedUsers : [],
 				followerCounts: { ...defaultProfile.followerCounts, ...saved.followerCounts },
+				likes: saved.likes && typeof saved.likes === "object" ? saved.likes : {},
+				communityPosts: Array.isArray(saved.communityPosts) && saved.communityPosts.length
+					? saved.communityPosts
+					: communityPosts.map((post) => ({ ...post, comments: post.comments.map((comment) => ({ ...comment })) })),
 				posts: Array.isArray(saved.posts) ? saved.posts : []
 			};
 		} catch {
@@ -61,17 +110,17 @@
 		header.className = "post-header";
 		const avatar = document.createElement("img");
 		avatar.className = "avatar";
-		avatar.src = profile.avatar;
-		avatar.alt = profile.displayName;
+		avatar.src = post.avatar || profile.avatar;
+		avatar.alt = post.author || profile.displayName;
 		const byline = document.createElement("div");
 		byline.className = "post-byline";
 		const author = document.createElement("a");
 		author.className = "display-name";
-		author.href = "profile.html";
-		author.textContent = profile.displayName;
+		author.href = post.profileHref || (post.author === profile.displayName ? "profile.html" : "#");
+		author.textContent = post.author || profile.displayName;
 		const handle = document.createElement("span");
 		handle.className = "handle";
-		handle.textContent = "@averylane";
+		handle.textContent = post.handle || "@averylane";
 		const dot = document.createElement("span");
 		dot.className = "post-dot";
 		dot.textContent = "·";
@@ -112,25 +161,37 @@
 		const actions = document.createElement("div");
 		actions.className = "post-actions";
 		const like = document.createElement("button");
-		like.className = `action-link post-like-action${post.liked ? " is-liked" : ""}`;
+		const savedEngagement = post.engagementKey ? profile.likes[post.engagementKey] : null;
+		const initialLiked = savedEngagement ? Boolean(savedEngagement.liked) : Boolean(post.liked);
+		const initialLikes = savedEngagement ? savedEngagement.count : Number(post.likes) || 0;
+		like.className = `action-link post-like-action${initialLiked ? " is-liked" : ""}`;
 		like.type = "button";
-		like.setAttribute("aria-label", post.liked ? "Unlike post" : "Like post");
-		like.setAttribute("aria-pressed", String(Boolean(post.liked)));
+		like.setAttribute("aria-label", initialLiked ? "Unlike post" : "Like post");
+		like.setAttribute("aria-pressed", String(initialLiked));
 		const heart = document.createElement("span");
 		heart.className = "heart";
 		heart.setAttribute("aria-hidden", "true");
-		heart.textContent = post.liked ? "♥" : "♡";
+		heart.textContent = initialLiked ? "♥" : "♡";
 		const likeCount = document.createElement("span");
-		likeCount.textContent = String(post.likes || 0);
+		likeCount.textContent = String(initialLikes);
 		like.append(heart, likeCount);
 		like.addEventListener("click", () => {
-			const previousLiked = Boolean(post.liked);
-			const previousLikes = Number(post.likes) || 0;
-			post.liked = !previousLiked;
-			post.likes = Math.max(0, previousLikes + (post.liked ? 1 : -1));
+			const previousLiked = initialLiked;
+			const previousLikes = initialLikes;
+			const nextLiked = !previousLiked;
+			const nextLikes = Math.max(0, previousLikes + (nextLiked ? 1 : -1));
+			if (post.engagementKey) {
+				profile.likes[post.engagementKey] = { liked: nextLiked, count: nextLikes };
+			} else {
+				post.liked = nextLiked;
+				post.likes = nextLikes;
+			}
 			if (!saveProfile()) {
-				post.liked = previousLiked;
-				post.likes = previousLikes;
+				if (post.engagementKey) profile.likes[post.engagementKey] = { liked: previousLiked, count: previousLikes };
+				else {
+					post.liked = previousLiked;
+					post.likes = previousLikes;
+				}
 				return;
 			}
 			renderProfile();
@@ -163,7 +224,7 @@
 				reply.className = "comment-preview";
 				const replyAvatar = document.createElement("img");
 				replyAvatar.className = "tiny-avatar";
-				replyAvatar.src = profile.avatar;
+				replyAvatar.src = comment.avatar || profile.avatar;
 				replyAvatar.alt = "";
 				const replyText = document.createElement("p");
 				const replyAuthor = document.createElement("strong");
@@ -191,7 +252,7 @@
 			event.preventDefault();
 			const text = replyInput.value.trim();
 			if (!text) return;
-			post.comments.push({ author: profile.displayName, text, createdAt: new Date().toISOString() });
+			post.comments.push({ author: profile.displayName, avatar: profile.avatar, text, createdAt: new Date().toISOString() });
 			if (!saveProfile()) {
 				post.comments.pop();
 				return;
@@ -212,6 +273,115 @@
 		});
 		document.querySelectorAll("[data-post-count]").forEach((element) => {
 			element.textContent = String(128 + profile.posts.length);
+		});
+	}
+
+	function searchVariants(term) {
+		const variants = new Set([term]);
+		if (term.length > 3 && term.endsWith("f")) variants.add(`${term.slice(0, -1)}ves`);
+		if (term.length > 4 && term.endsWith("ves")) variants.add(`${term.slice(0, -3)}f`);
+		if (term.length > 3 && term.endsWith("s")) variants.add(term.slice(0, -1));
+		else if (term.length > 3) variants.add(`${term}s`);
+		return [...variants].sort((first, second) => second.length - first.length);
+	}
+
+	function highlightMatches(container, terms) {
+		if (!terms.length) return;
+		const variants = [...new Set(terms.flatMap(searchVariants))];
+		const escapedVariants = variants.map((term) => term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
+		const expression = new RegExp(`\\b[\\w-]*(?:${escapedVariants.join("|")})[\\w-]*\\b`, "gi");
+		const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT);
+		const textNodes = [];
+		while (walker.nextNode()) textNodes.push(walker.currentNode);
+		textNodes.forEach((textNode) => {
+			const text = textNode.nodeValue;
+			if (!expression.test(text)) {
+				expression.lastIndex = 0;
+				return;
+			}
+			expression.lastIndex = 0;
+			const fragment = document.createDocumentFragment();
+			let cursor = 0;
+			for (const match of text.matchAll(expression)) {
+				fragment.append(document.createTextNode(text.slice(cursor, match.index)));
+				const mark = document.createElement("mark");
+				mark.className = "search-highlight";
+				mark.textContent = match[0];
+				fragment.append(mark);
+				cursor = match.index + match[0].length;
+			}
+			fragment.append(document.createTextNode(text.slice(cursor)));
+			textNode.replaceWith(fragment);
+		});
+	}
+
+	function renderDiscovery() {
+		const results = document.querySelector("[data-discover-results]");
+		if (!results) return;
+		const input = document.querySelector("[data-discover-search]");
+		const query = input.value.trim().toLocaleLowerCase();
+		const terms = query.split(/\s+/).filter(Boolean);
+		const posts = [...profile.posts, ...profile.communityPosts].sort((first, second) => new Date(second.createdAt) - new Date(first.createdAt));
+		const matches = posts.filter((post) => {
+			if (!terms.length) return true;
+			const searchableText = [post.author, post.handle, post.text, ...post.comments.map((comment) => comment.text)].join(" ").toLocaleLowerCase();
+			return terms.every((term) => searchVariants(term).some((variant) => searchableText.includes(variant)));
+		});
+		const heading = document.querySelector("[data-discover-heading]");
+		const count = document.querySelector("[data-discover-count]");
+		if (heading) heading.textContent = query ? `Results for “${input.value.trim()}”` : "Trending posts";
+		if (count) count.textContent = `${matches.length} ${matches.length === 1 ? "post" : "posts"}`;
+		results.replaceChildren();
+		matches.forEach((post) => {
+			const card = createPostCard(post, false);
+			if (terms.length) card.querySelectorAll(".post-content p").forEach((paragraph) => highlightMatches(paragraph, terms));
+			results.append(card);
+		});
+		const emptyState = document.querySelector("[data-discover-empty]");
+		if (emptyState) emptyState.hidden = matches.length > 0;
+	}
+
+	function renderStaticLikes() {
+		document.querySelectorAll(".like-toggle").forEach((input) => {
+			const label = input.nextElementSibling;
+			const heart = label?.querySelector(".heart");
+			const countElement = heart?.nextElementSibling;
+			if (!countElement) return;
+
+			const key = input.dataset.postKey || input.id;
+			const count = Number.parseInt(countElement.textContent, 10) || 0;
+			const state = profile.likes[key] || { liked: input.checked, count };
+			profile.likes[key] = state;
+			input.checked = Boolean(state.liked);
+			input.setAttribute("aria-label", input.checked ? "Unlike post" : "Like post");
+			label.setAttribute("aria-pressed", String(input.checked));
+			countElement.textContent = String(state.count);
+		});
+	}
+
+	function bindStaticLikes() {
+		document.querySelectorAll(".like-toggle").forEach((input) => {
+			input.addEventListener("change", () => {
+				const label = input.nextElementSibling;
+				const heart = label?.querySelector(".heart");
+				const countElement = heart?.nextElementSibling;
+				if (!countElement) return;
+
+				const key = input.dataset.postKey || input.id;
+				const previous = profile.likes[key] || {
+					liked: !input.checked,
+					count: Number.parseInt(countElement.textContent, 10) || 0
+				};
+				profile.likes[key] = {
+					liked: input.checked,
+					count: Math.max(0, previous.count + (input.checked ? 1 : -1))
+				};
+				if (!saveProfile()) {
+					profile.likes[key] = previous;
+					input.checked = previous.liked;
+				}
+				renderStaticLikes();
+			});
 		});
 	}
 
@@ -254,7 +424,9 @@
 			const count = profile.followerCounts[element.dataset.followerCount] ?? 0;
 			element.textContent = count.toLocaleString();
 		});
+		renderStaticLikes();
 		renderPosts();
+		renderDiscovery();
 	}
 
 	function fileToImageData(file, maxDimension) {
@@ -352,6 +524,27 @@
 		});
 	}
 
+	const discoverSearch = document.querySelector("[data-discover-search]");
+	if (discoverSearch) {
+		discoverSearch.form?.addEventListener("submit", (event) => {
+			event.preventDefault();
+			renderDiscovery();
+		});
+		discoverSearch.addEventListener("input", renderDiscovery);
+		document.querySelector("[data-discover-clear]")?.addEventListener("click", () => {
+			discoverSearch.value = "";
+			renderDiscovery();
+			discoverSearch.focus();
+		});
+		document.querySelectorAll("[data-trending-query]").forEach((button) => {
+			button.addEventListener("click", () => {
+				discoverSearch.value = button.dataset.trendingQuery;
+				renderDiscovery();
+				discoverSearch.focus();
+			});
+		});
+	}
+
 	[
 		{ id: "own-avatar", key: "avatar", maxDimension: 640, label: "Profile picture updated." },
 		{ id: "own-banner", key: "banner", maxDimension: 1600, label: "Banner image updated." }
@@ -395,5 +588,6 @@
 		}
 	});
 
+	bindStaticLikes();
 	renderProfile();
 })();
